@@ -1,6 +1,6 @@
 import sys
-from RAPID import abb
-from RAPID.yumi_g201 import start_barista
+import abb
+from yumi_g201 import start_barista
 
 from PyQt5.QtCore import QSize
 from PyQt5.QtWidgets import QApplication, QMainWindow
@@ -13,11 +13,12 @@ RightHand = None
 class MainWindow(QMainWindow, Ui_ABBYumiControlPanel):
     def __init__(self, parent=None, *args, **kwargs):
         QMainWindow.__init__(self)
+        self.setupUi(self)
         self.__robotIsConnectedFlag = False
         self.__cameraIsConnectedFlag = False
         self.__choosedCase = 'None'
         self.__caseIsRunningFlag = False
-        self.setupUi(self)
+
 
         self.robotConnect_Button.clicked.connect(self.connect_robot)
         self.runCase_Button.clicked.connect(self.runCase)
